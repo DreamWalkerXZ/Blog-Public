@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://i.loli.net/2020/03/30/qLfvdR6lUiNYuVX.png">
+  <link rel="icon" type="image/png" href="https://i.loli.net/2020/03/30/qLfvdR6lUiNYuVX.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#33333D">
+  <meta name="description" content="记录心得、分享技术、感受生活">
+  <meta name="author" content="DreamWalkerXZ">
+  <meta name="keywords" content="">
+  <title>教程-搜索&amp;解析QQ音乐的无损品质音源 - DreamWalkerXZ的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="/css/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tranquil-heart.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 77vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>DreamWalkerXZ的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://pic.stackoverflow.wiki/uploadImages/113/91/150/157/2020/03/31/13/07/3e9b281b-c785-4039-bd93-f2bd82458ec4.svg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期六, 十二月 8日 2018, 9:00 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    957 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      5 分钟
+                  </span>
+                
+
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>目前解析功能已经不可用，搜索功能正常<br />
+项目地址：<a href="https://github.com/DreamWalkerXZ/QQ_music_direct_link_export" target="_blank" rel="noopener">🚀GitHub</a></p>
+</blockquote>
+<h2 id="1获取数据"><a class="markdownIt-Anchor" href="#1获取数据"></a> 1.获取数据</h2>
+<pre class="highlight"><code class="python">keyword = <span class="hljs-string">'李健'</span>
+search_api = <span class="hljs-string">'http://c.y.qq.com/soso/fcgi-bin/client_search_cp?ct=24&amp;qqmusic_ver=1298&amp;new_json=1&amp;remoteplace=txt.yqq.center&amp;t=0&amp;aggr=1&amp;cr=1&amp;catZhida=1&amp;lossless=0&amp;flag_qc=0&amp;p=1&amp;n=50&amp;w='</span> + keyword + <span class="hljs-string">'&amp;jsonpCallback=searchCallbacksong2020&amp;format=json&amp;inCharset=utf8&amp;outCharset=utf-8&amp;notice=0&amp;platform=yqq&amp;needNewCode=0'</span>
+response = requests.get(search_api).text
+</code></pre>
+<p><img src="https://s1.ax1x.com/2018/11/10/iqlW9I.png" srcset="/img/loading.gif" alt="搜索数据" /></p>
+<p>即歌曲就在json.loads(response)[‘data’][‘song’][‘list’]中</p>
+<h2 id="2分析数据"><a class="markdownIt-Anchor" href="#2分析数据"></a> 2.分析数据</h2>
+<p>首先我们来看一个解析后的url：</p>
+<pre class="highlight"><code class="python"><span class="hljs-string">'http://streamoc.music.tc.qq.com/M800000PLHrM2luXiz.mp3?vkey=CA23BC73FA35144644BAD2C8E3026425F724AD8AA117AD079FB5812177575B59044EF642A3B422F3A9E7FEFF185839FC163444AD015BB875&amp;guid=DreamWalkerXZ&amp;uin=123456&amp;fromtag=8'</span>
+</code></pre>
+<p>然后把它的参数给分离出来</p>
+<pre class="highlight"><code class="python"><span class="hljs-string">'http://streamoc.music.tc.qq.com/'</span> + prefix + mid + extension + <span class="hljs-string">'?vkey='</span> + vkey + <span class="hljs-string">'&amp;guid='</span> + guid + <span class="hljs-string">'&amp;uin='</span> + uin + <span class="hljs-string">'&amp;fromtag=8'</span>
+</code></pre>
+<h3 id="prefix与extension"><a class="markdownIt-Anchor" href="#prefix与extension"></a> prefix与extension</h3>
+<p>prefix是音频格式的前缀， 与extension相对应</p>
+<table>
+<thead>
+<tr>
+<th>quality</th>
+<th>prefix</th>
+<th>extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dts</td>
+<td>D00A</td>
+<td>.flac</td>
+</tr>
+<tr>
+<td>ape</td>
+<td>A000</td>
+<td>.ape</td>
+</tr>
+<tr>
+<td>flac</td>
+<td>F000</td>
+<td>.flac</td>
+</tr>
+<tr>
+<td>320</td>
+<td>M800</td>
+<td>.mp3</td>
+</tr>
+<tr>
+<td>aac</td>
+<td>C600</td>
+<td>.m4a</td>
+</tr>
+<tr>
+<td>ogg</td>
+<td>O600</td>
+<td>.ogg</td>
+</tr>
+<tr>
+<td>128</td>
+<td>M500</td>
+<td>.mp3</td>
+</tr>
+</tbody>
+</table>
+<p>至于如何判断是否有此品质，只需要在第一步的搜索结果中的json.loads(response)[‘data’][‘song’][‘list’][歌曲位置][‘file’]中判断size_128, size_320, size_aac, size_ape, size_dts, size_flac, size_ogg这几个项的值是否为0即可（为0则代表无此品质）</p>
+<h3 id="mid"><a class="markdownIt-Anchor" href="#mid"></a> mid</h3>
+<p>mid是QQ音乐中每一首歌曲的唯一标识符</p>
+<p>mid即json.loads(response)[‘data’][‘song’][‘list’][歌曲位置][‘mid’]的值</p>
+<h3 id="uin与guid"><a class="markdownIt-Anchor" href="#uin与guid"></a> uin与guid</h3>
+<p>guid和uin随意填充即可, 但是要与后面生成vkey时所填的一致</p>
+<h3 id="vkey"><a class="markdownIt-Anchor" href="#vkey"></a> vkey</h3>
+<p>vkey是一个通过算法生成的具有时效性的字符串</p>
+<p>生成算法如下：</p>
+<pre class="highlight"><code class="python">vkey = json.loads(requests.get(<span class="hljs-string">'http://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=0&amp;loginUin='</span> + uin + <span class="hljs-string">'&amp;hostUin=0&amp;format=json&amp;inCharset=utf8&amp;outCharset=utf-8&amp;notice=0&amp;platform=yqq&amp;needNewCode=0&amp;cid=205361747&amp;uin='</span> + uin + <span class="hljs-string">'&amp;songmid=003a1tne1nSz1Y&amp;filename=C400003a1tne1nSz1Y.m4a&amp;guid='</span> + guid).text)[<span class="hljs-string">'data'</span>][<span class="hljs-string">'items'</span>][<span class="hljs-number">0</span>][<span class="hljs-string">'vkey'</span>]
+<span class="hljs-comment"># 1.注意uin与guid在生成vkey和拼接直链时要一致</span>
+<span class="hljs-comment"># 2.如果服务器在国外，请使用国内的HTTP代理来访问此接口，否则会因为版权问题无法解析</span>
+</code></pre>
+<h2 id="成品"><a class="markdownIt-Anchor" href="#成品"></a> 成品</h2>
+<blockquote>
+<p><a href="http://QQ.py" target="_blank" rel="noopener">QQ.py</a> （类）</p>
+</blockquote>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> requests
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QQ</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search</span><span class="hljs-params">(self, song_name)</span>:</span>
+        search_url = <span class="hljs-string">'http://c.y.qq.com/soso/fcgi-bin/client_search_cp?ct=24&amp;qqmusic_ver=1298&amp;new_json=1&amp;remoteplace=txt.yqq.center&amp;t=0&amp;aggr=1&amp;cr=1&amp;catZhida=1&amp;lossless=0&amp;flag_qc=0&amp;p=1&amp;n=50&amp;w='</span> + song_name + <span class="hljs-string">'&amp;jsonpCallback=searchCallbacksong2020&amp;format=json&amp;inCharset=utf8&amp;outCharset=utf-8&amp;notice=0&amp;platform=yqq&amp;needNewCode=0'</span>
+        search_result = []
+        <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> json.loads(requests.get(search_url).text)[<span class="hljs-string">'data'</span>][<span class="hljs-string">'song'</span>][<span class="hljs-string">'list'</span>]:
+            name = item[<span class="hljs-string">'name'</span>]
+            singer = <span class="hljs-string">''</span>.join(singer[<span class="hljs-string">'name'</span>] + <span class="hljs-string">'+'</span> <span class="hljs-keyword">for</span> singer <span class="hljs-keyword">in</span> item[<span class="hljs-string">'singer'</span>]).rstrip(<span class="hljs-string">'+'</span>)
+            album = item[<span class="hljs-string">'album'</span>][<span class="hljs-string">'name'</span>]
+            media_mid = item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'media_mid'</span>]
+            types = []
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_128'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'128'</span>)
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_320'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'320'</span>)
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_aac'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'aac'</span>)
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_ape'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'ape'</span>)
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_dts'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'dts'</span>)
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_flac'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'flac'</span>)
+            <span class="hljs-keyword">if</span> item[<span class="hljs-string">'file'</span>][<span class="hljs-string">'size_ogg'</span>] != <span class="hljs-number">0</span>:
+                types.append(<span class="hljs-string">'ogg'</span>)
+            search_result.append({<span class="hljs-string">'name'</span>: name, <span class="hljs-string">'singer'</span>: singer, <span class="hljs-string">'album'</span>: album, <span class="hljs-string">'media_mid'</span>: media_mid, <span class="hljs-string">'types'</span>: types})
+        <span class="hljs-keyword">return</span> search_result
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_audio_url</span><span class="hljs-params">(self, media_mid, type)</span>:</span>
+        <span class="hljs-keyword">if</span> type == <span class="hljs-string">'dts'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'D00A'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.flac'</span>}
+        <span class="hljs-keyword">elif</span> type == <span class="hljs-string">'ape'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'A000'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.ape'</span>}
+        <span class="hljs-keyword">elif</span> type == <span class="hljs-string">'flac'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'F000'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.flac'</span>}
+        <span class="hljs-keyword">elif</span> type == <span class="hljs-string">'320'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'M800'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.mp3'</span>}
+        <span class="hljs-keyword">elif</span> type == <span class="hljs-string">'aac'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'C600'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.m4a'</span>}
+        <span class="hljs-keyword">elif</span> type == <span class="hljs-string">'ogg'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'O600'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.ogg'</span>}
+        <span class="hljs-keyword">elif</span> type == <span class="hljs-string">'128'</span>:
+            type = {<span class="hljs-string">'prefix'</span>: <span class="hljs-string">'M500'</span>, <span class="hljs-string">'extension'</span>: <span class="hljs-string">'.mp3'</span>}
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"Invalid type"</span>, type)
+        uin = <span class="hljs-string">'123456'</span>
+        guid = <span class="hljs-string">'DreamWalkerXZ'</span>
+        vkey = json.loads(requests.get(<span class="hljs-string">'http://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=0&amp;loginUin='</span> + uin + <span class="hljs-string">'&amp;hostUin=0&amp;format=json&amp;inCharset=utf8&amp;outCharset=utf-8&amp;notice=0&amp;platform=yqq&amp;needNewCode=0&amp;cid=205361747&amp;uin='</span> + uin + <span class="hljs-string">'&amp;songmid=003a1tne1nSz1Y&amp;filename=C400003a1tne1nSz1Y.m4a&amp;guid='</span> + guid).text)[<span class="hljs-string">'data'</span>][<span class="hljs-string">'items'</span>][<span class="hljs-number">0</span>][<span class="hljs-string">'vkey'</span>]
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'http://streamoc.music.tc.qq.com/'</span> + type[<span class="hljs-string">'prefix'</span>] + media_mid + type[<span class="hljs-string">'extension'</span>] + <span class="hljs-string">'?vkey='</span> + vkey + <span class="hljs-string">'&amp;guid='</span> + guid + <span class="hljs-string">'&amp;uin='</span> + uin + <span class="hljs-string">'&amp;fromtag=8'</span>
+</code></pre>
+<blockquote>
+<p>调用示例</p>
+</blockquote>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> QQ
+
+
+qq = QQ.QQ()
+
+
+<span class="hljs-comment"># 搜索</span>
+search_result = qq.search(<span class="hljs-string">'李健'</span>)
+print(search_result)
+<span class="hljs-comment">###</span>
+[{<span class="hljs-string">'name'</span>: <span class="hljs-string">'贝加尔湖畔'</span>,
+  <span class="hljs-string">'singer'</span>: <span class="hljs-string">'李健'</span>,
+  <span class="hljs-string">'album'</span>: <span class="hljs-string">'依然'</span>,
+  <span class="hljs-string">'media_mid'</span>: <span class="hljs-string">'000PLHrM2luXiz'</span>,
+  <span class="hljs-string">'types'</span>: [<span class="hljs-string">'128'</span>, <span class="hljs-string">'320'</span>, <span class="hljs-string">'aac'</span>, <span class="hljs-string">'ape'</span>, <span class="hljs-string">'flac'</span>, <span class="hljs-string">'ogg'</span>]},
+ {<span class="hljs-string">'name'</span>: <span class="hljs-string">'假如爱有天意'</span>,
+  <span class="hljs-string">'singer'</span>: <span class="hljs-string">'李健'</span>,
+  <span class="hljs-string">'album'</span>: <span class="hljs-string">'李健'</span>,
+  <span class="hljs-string">'media_mid'</span>: <span class="hljs-string">'003u0BdF1aocDJ'</span>,
+  <span class="hljs-string">'types'</span>: [<span class="hljs-string">'128'</span>, <span class="hljs-string">'320'</span>, <span class="hljs-string">'aac'</span>, <span class="hljs-string">'flac'</span>, <span class="hljs-string">'ogg'</span>]},
+ ...中间省略...
+ {<span class="hljs-string">'name'</span>: <span class="hljs-string">'日落之前'</span>,
+  <span class="hljs-string">'singer'</span>: <span class="hljs-string">'李健'</span>,
+  <span class="hljs-string">'album'</span>: <span class="hljs-string">'李健'</span>,
+  <span class="hljs-string">'media_mid'</span>: <span class="hljs-string">'0047DwLA1u9FEx'</span>,
+  <span class="hljs-string">'types'</span>: [<span class="hljs-string">'128'</span>, <span class="hljs-string">'320'</span>, <span class="hljs-string">'aac'</span>, <span class="hljs-string">'ape'</span>, <span class="hljs-string">'dts'</span>, <span class="hljs-string">'flac'</span>, <span class="hljs-string">'ogg'</span>]}]
+<span class="hljs-comment">###</span>
+
+<span class="hljs-comment"># 解析</span>
+audio_url = qq.get_audio_url(<span class="hljs-string">'001Liwq92gKerW'</span>, <span class="hljs-string">'320'</span>)
+print(audio_url)
+<span class="hljs-comment">###</span>
+http://streamoc.music.tc.qq.com/M800001Liwq92gKerW.mp3?vkey=<span class="hljs-number">17E517</span>E90215EB25F6DD717CE479C6E9573EB9505EA633F4909A32725B490ACDF5A934BB8674363A90C8C076104C2412E6FCADCF58FB5DC0&amp;guid=DreamWalkerXZ&amp;uin=<span class="hljs-number">123456</span>&amp;fromtag=<span class="hljs-number">8</span>
+<span class="hljs-comment">###</span>
+</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/QQ%E9%9F%B3%E4%B9%90/">QQ音乐</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <blockquote class="blockquote bq-warning"><p class="bq-title">版权声明</p><p>本博客所有文章除特别声明外，<br>均采用 "<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow noopener noopener">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>" 进行许可。</p></blockquote>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/03/15/%E6%95%99%E7%A8%8B-%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0Docker/">
+                        <i class="fa fa-chevron-left"></i>
+                        <span class="hidden-mobile">教程-通过一个小项目学习Docker</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+              
+                <!-- Comments -->
+                <div class="comments" id="comments">
+                  
+                  
+  <script defer src="https://utteranc.es/client.js"
+          repo="DreamWalkerXZ/Blog-Public"
+          issue-term="pathname"
+  
+          label="Comment"
+    
+          theme="photon-dark"
+          crossorigin="anonymous"
+  >
+  </script>
+
+
+                </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      Made with <i class="iconfont icon-love pink-text"></i> by DreamWalkerXZ
+      <br>
+      Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>Fluid</b></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var toc = $('#toc');
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+      var tocLimMax = 2 * boardTop + boardCtn.height();
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = boardCtn.css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+<!-- Plugins -->
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-130630064-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "教程-搜索&解析QQ音乐的无损品质音源&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

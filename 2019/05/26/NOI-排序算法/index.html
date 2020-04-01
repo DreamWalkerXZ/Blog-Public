@@ -19,7 +19,7 @@
   <meta name="description" content="记录心得、分享技术、感受生活">
   <meta name="author" content="DreamWalkerXZ">
   <meta name="keywords" content="">
-  <title>NOI笔记-排序算法 - DreamWalkerXZ的博客</title>
+  <title>NOI-排序算法 - DreamWalkerXZ的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -175,14 +175,14 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
-<p>本文将列举出NOI中常见的几种排序算法，希望对大家有帮助😝!</p>
+              <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>本文将分享NOI中常见的几种排序算法</p>
 <blockquote>
 <p>本文中使用的定义来源于Wikipedia。<br />
 本文中使用的图片除最后一张来源于cnblogs之外，其他图片均来源于VisuAlgo。<br />
 本文中的C++代码除归并排序处引用自Wikipedia，其他的排序的代码均为本人所写。</p>
 </blockquote>
-<h1 id="调用algorithm进行排序"><a class="markdownIt-Anchor" href="#调用algorithm进行排序"></a> 🤣调用algorithm进行排序</h1>
+<h2 id="调用algorithm进行排序"><a class="markdownIt-Anchor" href="#调用algorithm进行排序"></a> 🤣调用algorithm进行排序</h2>
 <p>algorithm中的std::sort()函数可以方便地进行排序，如果题目没有特殊要求，可以直接调用此函数。</p>
 <p>C++代码</p>
 <pre class="highlight"><code class="c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
@@ -193,7 +193,7 @@
 sort(arr, arr + arr_len);
 <span class="hljs-comment">/* your code ... */</span>
 </code></pre>
-<h1 id="冒泡排序"><a class="markdownIt-Anchor" href="#冒泡排序"></a> 🧼冒泡排序</h1>
+<h2 id="冒泡排序"><a class="markdownIt-Anchor" href="#冒泡排序"></a> 🧼冒泡排序</h2>
 <p>冒泡排序（英语：Bubble Sort）是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢「浮」到数列的顶端。</p>
 <p><img src="https://i.loli.net/2019/06/29/5d16d824c545187370.gif" srcset="/img/loading.gif" alt="冒泡排序.gif" /></p>
 <p>C++代码</p>
@@ -246,8 +246,8 @@ sort(arr, arr + arr_len);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h1 id="选择排序"><a class="markdownIt-Anchor" href="#选择排序"></a> 👆选择排序</h1>
-<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<h2 id="选择排序"><a class="markdownIt-Anchor" href="#选择排序"></a> 👆选择排序</h2>
+<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
 <p><img src="https://i.loli.net/2019/06/29/5d16d85e0784844278.gif" srcset="/img/loading.gif" alt="选择排序.gif" /></p>
 <p>C++代码</p>
 <pre class="highlight"><code class="c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
@@ -301,7 +301,7 @@ sort(arr, arr + arr_len);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h1 id="️插入排序"><a class="markdownIt-Anchor" href="#️插入排序"></a> 🀄️插入排序</h1>
+<h2 id="️插入排序"><a class="markdownIt-Anchor" href="#️插入排序"></a> 🀄️插入排序</h2>
 <p>插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
 <p><img src="https://i.loli.net/2019/06/29/5d16ddc9b821858475.gif" srcset="/img/loading.gif" alt="插入排序.gif" /></p>
 <p>C++代码</p>
@@ -355,7 +355,7 @@ sort(arr, arr + arr_len);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h1 id="桶排序"><a class="markdownIt-Anchor" href="#桶排序"></a> 📦桶排序</h1>
+<h2 id="桶排序"><a class="markdownIt-Anchor" href="#桶排序"></a> 📦桶排序</h2>
 <p>桶排序（Bucket sort）或所谓的箱排序，是一个排序演算法，工作的原理是将阵列分到有限数量的桶里。每个桶再个别排序（有可能再使用别的排序演算法或是以递归方式继续使用桶排序进行排序）。</p>
 <p><img src="https://i.loli.net/2019/07/06/5d20b1d191b6870108.gif" srcset="/img/loading.gif" alt="桶排序.gif" /></p>
 <p>C++代码</p>
@@ -404,7 +404,7 @@ sort(arr, arr + arr_len);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h1 id="快速排序"><a class="markdownIt-Anchor" href="#快速排序"></a> 🏇快速排序</h1>
+<h2 id="快速排序"><a class="markdownIt-Anchor" href="#快速排序"></a> 🏇快速排序</h2>
 <p>快速排序（英语：Quicksort），又称划分交换排序（partition-exchange sort），简称快排，一种排序算法，最早由东尼·霍尔提出。在平均状况下，排序n个项目要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>次比较。在最坏状况下则需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>次比较，但这种状况并不常见。事实上，快速排序<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>通常明显比其他演算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地达成。</p>
 <p><img src="https://i.loli.net/2019/07/13/5d29dac480e0296026.gif" srcset="/img/loading.gif" alt="快速排序.gif" /></p>
 <p>C++代码</p>
@@ -469,7 +469,7 @@ sort(arr, arr + arr_len);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h1 id="归并排序二路"><a class="markdownIt-Anchor" href="#归并排序二路"></a> 🎛归并排序(二路)</h1>
+<h2 id="归并排序二路"><a class="markdownIt-Anchor" href="#归并排序二路"></a> 🎛归并排序(二路)</h2>
 <p>归并排序（英语：Merge sort，或mergesort），是建立在归并操作上的一种有效的排序算法，效率為<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。1945年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。</p>
 <p><img src="https://i.loli.net/2019/07/24/5d387662c1f1f47165.png" srcset="/img/loading.gif" alt="归并排序.png" /></p>
 <pre class="highlight"><code class="c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Merge</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;Array, <span class="hljs-keyword">int</span> front, <span class="hljs-keyword">int</span> mid, <span class="hljs-keyword">int</span> <span class="hljs-built_in">end</span>)</span> </span>{
@@ -504,7 +504,7 @@ sort(arr, arr + arr_len);
     Merge(Array, front, mid, <span class="hljs-built_in">end</span>);
 }
 </code></pre>
-<h1 id="比较"><a class="markdownIt-Anchor" href="#比较"></a> 比较</h1>
+<h2 id="比较"><a class="markdownIt-Anchor" href="#比较"></a> 比较</h2>
 <table>
 <thead>
 <tr>
@@ -553,7 +553,7 @@ sort(arr, arr + arr_len);
 </tr>
 </tbody>
 </table>
-<h1 id="选择"><a class="markdownIt-Anchor" href="#选择"></a> 选择</h1>
+<h2 id="选择"><a class="markdownIt-Anchor" href="#选择"></a> 选择</h2>
 <p><img src="https://i.loli.net/2019/06/28/5d16281e44f2b75052.png" srcset="/img/loading.gif" alt="场景选择.png" /></p>
 
             </div>
@@ -573,11 +573,7 @@ sort(arr, arr + arr_len);
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/NOI/">NOI</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
                     
                   </span>
                 
@@ -590,9 +586,21 @@ sort(arr, arr + arr_len);
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2019/09/14/%E6%95%99%E7%A8%8B-Bilibili%E5%BC%B9%E5%B9%95%E8%BD%ACASS%E5%AD%97%E5%B9%95/">
+                        <i class="fa fa-chevron-left"></i>
+                        <span class="hidden-mobile">教程-Bilibili弹幕转ASS字幕</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
+                    
+                      <a href="/2019/03/15/%E6%95%99%E7%A8%8B-%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0Docker/">
+                        <span class="hidden-mobile">教程-通过一个小项目学习Docker</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="fa fa-chevron-right"></i>
+                      </a>
                     
                   </div>
                 </div>
@@ -806,7 +814,7 @@ sort(arr, arr + arr_len);
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "NOI笔记-排序算法&nbsp;",
+        "NOI-排序算法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

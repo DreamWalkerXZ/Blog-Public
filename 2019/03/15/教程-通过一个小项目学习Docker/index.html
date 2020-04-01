@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://i.loli.net/2020/03/30/qLfvdR6lUiNYuVX.png">
+  <link rel="icon" type="image/png" href="https://i.loli.net/2020/03/30/qLfvdR6lUiNYuVX.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#33333D">
+  <meta name="description" content="记录心得、分享技术、感受生活">
+  <meta name="author" content="DreamWalkerXZ">
+  <meta name="keywords" content="">
+  <title>教程-通过一个小项目学习Docker - DreamWalkerXZ的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/mdbootstrap/4.13.0/css/mdb.min.css" />
+<link  rel="stylesheet" href="/css/github-markdown.min.css" />
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link  rel="stylesheet" href="/lib/prettify/tranquil-heart.min.css" />
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 77vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>DreamWalkerXZ的博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://i.loli.net/2020/04/01/yFS6vlkDd5G2ILM.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期五, 三月 15日 2019, 8:17 晚上
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    1.6k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      7 分钟
+                  </span>
+                
+
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h2 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h2>
+<p>本次将通过一个小项目&quot;OverWeb&quot;来学习Docker技术</p>
+<blockquote>
+<p>本项目未经安全测试，请勿直接部署于公共环境</p>
+</blockquote>
+<p>项目介绍：在网页上使用基于Docker的VNC容器</p>
+<p>项目地址：<a href="https://github.com/DreamWalkerXZ/OverWeb" target="_blank" rel="noopener">🚀GitHub</a></p>
+<p>成品展示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=46442672&cid=81370958&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%"></iframe>
+<h2 id="什么是docker"><a class="markdownIt-Anchor" href="#什么是docker"></a> 什么是Docker</h2>
+<h3 id="维基百科"><a class="markdownIt-Anchor" href="#维基百科"></a> 维基百科</h3>
+<p>Docker是一个开放源代码软件项目，让应用程序部署在软件货柜下的工作可以自动化进行，借此在Linux操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制。<br />
+Docker利用Linux核心中的资源分离机制，例如cgroups，以及Linux核心名字空间（namespaces），来创建独立的容器（containers）。这可以在单一Linux实体下运作，避免引导一个虚拟机造成的额外负担。Linux核心对名字空间的支持完全隔离了工作环境中应用程序的视野，包括进程树、网络、用户ID与挂载文件系统，而核心的cgroup提供资源隔离，包括CPU、存储器、block I/O与网络。从0.9版本起，Dockers在使用抽象虚拟是经由libvirt的LXC与systemd - nspawn提供界面的基础上，开始包括libcontainer库做为以自己的方式开始直接使用由Linux核心提供的虚拟化的设施，</p>
+<h3 id="人话"><a class="markdownIt-Anchor" href="#人话"></a> 人话</h3>
+<p>Docker是一个与宿主系统连接更加直接的“虚拟机”。相比传统的虚拟机它不需要再加一层客户操作系统来实现虚拟化，而是通过linux系统的资源分离机制直接实现虚拟的、与宿主隔离的“容器”。</p>
+<p>图例（第一张为传统虚拟机,第二张为Docker）：</p>
+<p><a href="https://i.loli.net/2019/03/15/5c8b9b8d99266.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/03/15/5c8b9b8d99266.png" srcset="/img/loading.gif" alt="virtualization.png" /></a><br />
+<a href="https://i.loli.net/2019/03/15/5c8b9b8d72016.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/03/15/5c8b9b8d72016.png" srcset="/img/loading.gif" alt="docker.png" /></a></p>
+<h2 id="安装docker"><a class="markdownIt-Anchor" href="#安装docker"></a> 安装Docker</h2>
+<blockquote>
+<p>官方网站上有各种环境下的<a href="https://docs.docker.com/install/" target="_blank" rel="noopener">安装指南</a>，这里主要介绍 Docker CE 在 Ubuntu 、Windows 10 (PC) 和 macOS 上的安装。</p>
+</blockquote>
+<h3 id="docker的版本"><a class="markdownIt-Anchor" href="#docker的版本"></a> Docker的版本</h3>
+<p>Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。</p>
+<p>Docker CE 分为 stable, test, 和 nightly 三个更新频道。每六个月发布一个 stable 版本 (18.09, 19.03, 19.09…)。</p>
+<h3 id="ubuntu"><a class="markdownIt-Anchor" href="#ubuntu"></a> Ubuntu</h3>
+<h4 id="使用脚本自动安装"><a class="markdownIt-Anchor" href="#使用脚本自动安装"></a> 使用脚本自动安装</h4>
+<p>在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Ubuntu 系统上可以使用这套脚本安装：</p>
+<pre class="highlight"><code class="bash">curl -fsSL get.docker.com -o get-docker.sh
+sudo sh get-docker.sh <span class="hljs-comment"># 国内用户可加上--mirror Aliyun</span>
+sudo usermod -aG docker 你的用户名
+<span class="hljs-comment"># 重启你的电脑</span>
+docker run hello-world <span class="hljs-comment"># 完成!</span>
+</code></pre>
+<h4 id="手动安装"><a class="markdownIt-Anchor" href="#手动安装"></a> 手动安装</h4>
+<h5 id="删除旧版本"><a class="markdownIt-Anchor" href="#删除旧版本"></a> 删除旧版本</h5>
+<pre class="highlight"><code class="bash">sudo apt-get remove docker docker-engine docker.io containerd runc
+</code></pre>
+<h5 id="设置好repository"><a class="markdownIt-Anchor" href="#设置好repository"></a> 设置好REPOSITORY</h5>
+<pre class="highlight"><code class="bash">sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+    <span class="hljs-string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    <span class="hljs-variable">$(lsb_release -cs)</span> \
+    stable"</span> <span class="hljs-comment"># arch处填写你自己的架构</span>
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker 你的用户名
+<span class="hljs-comment"># 重启你的电脑</span>
+docker run hello-world <span class="hljs-comment"># 完成!</span>
+</code></pre>
+<h3 id="windows-10-pc"><a class="markdownIt-Anchor" href="#windows-10-pc"></a> Windows 10 (PC)</h3>
+<p><a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">点此下载Community Edition (CE) of Docker for Microsoft Windows</a></p>
+<h3 id="macos"><a class="markdownIt-Anchor" href="#macos"></a> macOS</h3>
+<p><a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">点此下载Community Edition (CE) of Docker Desktop for Mac</a></p>
+<h2 id="使用docker"><a class="markdownIt-Anchor" href="#使用docker"></a> 使用Docker</h2>
+<h3 id="获取镜像"><a class="markdownIt-Anchor" href="#获取镜像"></a> 获取镜像</h3>
+<p>Docker根据一个“镜像”来生成一个容器，这些镜像一般可以在<a href="https://hub.docker.com" target="_blank" rel="noopener">Docker Hub</a>上找到，接下来我们将来获取这些镜像</p>
+<pre class="highlight"><code class="bash">docker pull [选项] [Docker仓库 地址[:端口号]/]镜像名[:标签]
+</code></pre>
+<p>具体的选项可以通过 docker pull --help 命令看到</p>
+<p>Docker仓库：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。<br />
+镜像名：如之前所说，这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;镜像名&gt;。对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。</p>
+<p>实操</p>
+<pre class="highlight"><code class="bash">docker pull ubuntu:18.04
+<span class="hljs-comment"># 18.04: Pulling from library/ubuntu</span>
+<span class="hljs-comment"># bf5d46315322: Pull complete</span>
+<span class="hljs-comment"># 9f13e0ac480c: Pull complete</span>
+<span class="hljs-comment"># e8988b5b3097: Pull complete</span>
+<span class="hljs-comment"># 40af181810e7: Pull complete</span>
+<span class="hljs-comment"># e6f7c7e5c03e: Pull complete</span>
+<span class="hljs-comment"># Digest: sha256:147913621d9cdea08853f6ba9116c2e27a3ceffecf3b492983ae97c3d643fbbe</span>
+<span class="hljs-comment"># Status: Downloaded newer image for ubuntu:18.04</span>
+</code></pre>
+<h3 id="使用镜像-容器"><a class="markdownIt-Anchor" href="#使用镜像-容器"></a> 使用镜像 -&gt; 容器</h3>
+<p>主要命令 docker run</p>
+<pre class="highlight"><code class="bash">docker run ubuntu:18.04 /bin/<span class="hljs-built_in">echo</span> <span class="hljs-string">'Hello world'</span>
+<span class="hljs-comment"># Hello world</span>
+</code></pre>
+<p>这时发生了什么：<br />
+1.Docker根据你给出的镜像名ubuntu:18.04创建出一个容器<br />
+2.Docker向刚刚创建的容器传入你输入的命令/bin/echo ‘Hello world’<br />
+3.Docker将容器的输出返回</p>
+<h3 id="更多用法"><a class="markdownIt-Anchor" href="#更多用法"></a> 更多用法</h3>
+<p>Docker的玩法当然远不止这些，不过篇幅所限（懒），给大家推荐一个Docker教程——<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">Docker —— 从入门到实践</a></p>
+<h2 id="docker的小实践-overweb"><a class="markdownIt-Anchor" href="#docker的小实践-overweb"></a> Docker的小实践 -&gt; OverWeb</h2>
+<h3 id="overweb简介"><a class="markdownIt-Anchor" href="#overweb简介"></a> OverWeb简介</h3>
+<p>在网页上使用基于Docker的VNC容器</p>
+<h3 id="overweb的逻辑图"><a class="markdownIt-Anchor" href="#overweb的逻辑图"></a> OverWeb的逻辑图</h3>
+<p><a href="https://i.loli.net/2019/03/15/5c8baeec90503.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/03/15/5c8baeec90503.png" srcset="/img/loading.gif" alt="OverWeb.png" /></a></p>
+<h3 id="overweb的文件结构"><a class="markdownIt-Anchor" href="#overweb的文件结构"></a> OverWeb的文件结构</h3>
+<pre class="highlight"><code class="bash">$ tree
+.
+├── LICENSE
+├── README.md
+├── main.py
+├── static
+│   ├── css
+│   │   ├── mdui.css
+│   │   ├── mdui.min.css
+│   │   └── mdui.min.css.map
+│   ├── fonts
+│   │   └── roboto
+│   │       ├── LICENSE.txt
+│   │       ├── Roboto-Black.woff
+│   │       ├── Roboto-Black.woff2
+│   │       ├── Roboto-BlackItalic.woff
+│   │       ├── Roboto-BlackItalic.woff2
+│   │       ├── Roboto-Bold.woff
+│   │       ├── Roboto-Bold.woff2
+│   │       ├── Roboto-BoldItalic.woff
+│   │       ├── Roboto-BoldItalic.woff2
+│   │       ├── Roboto-Light.woff
+│   │       ├── Roboto-Light.woff2
+│   │       ├── Roboto-LightItalic.woff
+│   │       ├── Roboto-LightItalic.woff2
+│   │       ├── Roboto-Medium.woff
+│   │       ├── Roboto-Medium.woff2
+│   │       ├── Roboto-MediumItalic.woff
+│   │       ├── Roboto-MediumItalic.woff2
+│   │       ├── Roboto-Regular.woff
+│   │       ├── Roboto-Regular.woff2
+│   │       ├── Roboto-RegularItalic.woff
+│   │       ├── Roboto-RegularItalic.woff2
+│   │       ├── Roboto-Thin.woff
+│   │       ├── Roboto-Thin.woff2
+│   │       ├── Roboto-ThinItalic.woff
+│   │       └── Roboto-ThinItalic.woff2
+│   ├── icons
+│   │   ├── favicon.ico
+│   │   └── material-icons
+│   │       ├── LICENSE.txt
+│   │       ├── MaterialIcons-Regular.ijmap
+│   │       ├── MaterialIcons-Regular.woff
+│   │       └── MaterialIcons-Regular.woff2
+│   └── js
+│       ├── mdui.js
+│       ├── mdui.min.js
+│       └── mdui.min.js.map
+└── templates
+    ├── about.html
+    ├── go.html
+    └── index.html
+
+8 directories, 42 files
+</code></pre>
+<h3 id="安装运行"><a class="markdownIt-Anchor" href="#安装运行"></a> 安装&amp;运行</h3>
+<pre class="highlight"><code class="bash"><span class="hljs-comment"># 需要Docker以及Python3环境</span>
+git <span class="hljs-built_in">clone</span> https://github.com/DreamWalkerXZ/OverWeb.git
+<span class="hljs-built_in">cd</span> ./OverWeb
+docker pull consol/ubuntu-icewm-vnc
+pip3 install flask --user
+python3 main.py
+</code></pre>
+<h3 id="关键部分"><a class="markdownIt-Anchor" href="#关键部分"></a> 关键部分</h3>
+<pre class="highlight"><code class="python">os.system(<span class="hljs-string">'docker run -d -p %d:6901 -e VNC_PW=%s -e VNC_RESOLUTION=720x720 --name %s consol/ubuntu-icewm-vnc chromium-browser https://www.google.com/'</span> % (port, password, name))
+</code></pre>
+<p>-p参数(用于端口映射) -p 映射至宿主机的端口:容器内要映射的端口</p>
+<p>-e参数(用于设置容器内的环境变量) -e ENV1=VALUE1 ENV2=VALUE2</p>
+<p>–name参数(用于为容器命名) --name NAME</p>
+<h3 id="mainpy"><a class="markdownIt-Anchor" href="#mainpy"></a> <a href="https://www.github.com" target="_blank" rel="noopener">main.py</a></h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> uuid
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> threading
+<span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, render_template, url_for
+
+
+app = Flask(__name__)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">expireContainer</span><span class="hljs-params">(name)</span>:</span>
+    print(<span class="hljs-string">'%s will be removed in 10 minutes'</span> % (name))
+    time.sleep(<span class="hljs-number">10</span>*<span class="hljs-number">60</span>)
+    print(<span class="hljs-string">'Stopping %s'</span> % (name))
+    os.system(<span class="hljs-string">'docker stop %s'</span> % (name))
+    print(<span class="hljs-string">'Removing %s'</span> % (name))
+    os.system(<span class="hljs-string">'docker rm %s'</span> % (name))
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">createTmpContainer</span><span class="hljs-params">(port, password, name)</span>:</span>
+    print(<span class="hljs-string">'Creating %s'</span> % (name))
+    os.system(<span class="hljs-string">'docker run -d -p %d:6901 -e VNC_PW=%s -e VNC_RESOLUTION=720x720 --name %s consol/ubuntu-icewm-vnc chromium-browser https://www.google.com/'</span> % (port, password, name))
+    threading.Thread(target=expireContainer, args=(name,)).start()
+
+<span class="hljs-meta">@app.route('/')</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">'index.html'</span>)
+
+<span class="hljs-meta">@app.route('/go')</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">go</span><span class="hljs-params">()</span>:</span>
+    port = <span class="hljs-number">10000</span> + random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">50000</span>)
+    password = str(uuid.uuid4())
+    name = str(uuid.uuid4())
+    createTmpContainer(port, password, name)
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">'go.html'</span>, link=<span class="hljs-string">'http://localhost:%d/?password=%s'</span> % (port, password))
+
+<span class="hljs-meta">@app.route('/about')</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">about</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">'about.html'</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>:</span>
+    app.run(host=<span class="hljs-string">'127.0.0.1'</span>, port=<span class="hljs-number">8080</span>, debug=<span class="hljs-literal">True</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    main()
+</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <blockquote class="blockquote bq-warning"><p class="bq-title">版权声明</p><p>本博客所有文章除特别声明外，<br>均采用 "<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="nofollow noopener noopener">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>" 进行许可。</p></blockquote>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/26/NOI-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                        <i class="fa fa-chevron-left"></i>
+                        <span class="hidden-mobile">NOI-排序算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2018/12/08/%E6%95%99%E7%A8%8B-%E6%90%9C%E7%B4%A2&amp;%E8%A7%A3%E6%9E%90QQ%E9%9F%B3%E4%B9%90%E6%97%A0%E6%8D%9F%E5%93%81%E8%B4%A8/">
+                        <span class="hidden-mobile">教程-搜索&解析QQ音乐的无损品质音源</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="fa fa-chevron-right"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+              
+                <!-- Comments -->
+                <div class="comments" id="comments">
+                  
+                  
+  <script defer src="https://utteranc.es/client.js"
+          repo="DreamWalkerXZ/Blog-Public"
+          issue-term="pathname"
+  
+          label="Comment"
+    
+          theme="photon-dark"
+          crossorigin="anonymous"
+  >
+  </script>
+
+
+                </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      Made with <i class="iconfont icon-love pink-text"></i> by DreamWalkerXZ
+      <br>
+      Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><b>Fluid</b></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/popper.js/1.16.1/umd/popper.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.staticfile.org/mdbootstrap/4.13.0/js/mdb.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var toc = $('#toc');
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+      var tocLimMax = 2 * boardTop + boardCtn.height();
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = boardCtn.css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+<!-- Plugins -->
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-130630064-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/prettify/188.0.0/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "教程-通过一个小项目学习Docker&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
+  
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
