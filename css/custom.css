@@ -10,3 +10,37 @@
 .category-tree-list-link {
     font-size: 18px;
 }
+
+p.search-list-content {
+    color: #373740;
+}
+
+#modalSearch > div > div > div.modal-header.text-center > h4 {
+    color: #373740;
+}
+
+#aplayer > div.aplayer-body {
+    box-shadow: 7px -7px 15px -7px rgb(48,48,48);
+}
+
+#aplayer > div.aplayer-list {
+    box-shadow: 7px -7px 15px -7px rgb(48,48,48);
+}
+
+.aplayer-title {
+    color: #373740;
+    font-weight: bold;
+}
+
+.aplayer-list-title {
+    color: #373740;
+    font-weight: bold;
+}
+
+.aplayer-author {
+    font-weight: normal;
+}
+
+.aplayer-list-author {
+    font-weight: normal;
+}

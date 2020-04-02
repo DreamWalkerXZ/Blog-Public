@@ -531,6 +531,28 @@ python3 main.py # 输入为B站视频地址, 输出为该视频cid.ass字幕文�
   
 
   
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoad = window.onload;
+  window.onload = function () {
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#FF4181',
+      preload: 'none',
+      audio: [{"name":"secret base 〜君がくれたもの〜 (10 years after Ver.)","artist":"本間芽衣子(茅野愛衣) / 安城鳴子(戸松遥) / 鶴見知利子(早見沙織)","url":"https://share.dreamwalkerxz.ski/Audio/Blog/secret%20base%20%E3%80%9C%E5%90%9B%E3%81%8B%E3%82%99%E3%81%8F%E3%82%8C%E3%81%9F%E3%82%82%E3%81%AE%E3%80%9C%20(10%20years%20after%20Ver.).mp3","cover":"https://i.loli.net/2020/04/02/koMgGyuwep9Q3Ds.png"},{"name":"比翼の羽根","artist":"eufonius","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E6%AF%94%E7%BF%BC%E3%81%AE%E7%BE%BD%E6%A0%B9.mp3","cover":"https://i.loli.net/2020/04/02/Jv4t5F3QNBiEWXe.jpg"},{"name":"不可思議のカルテ movie ver.","artist":"桜島麻衣(CV:瀬戸麻沙美) / 古賀朋絵(CV:東山奈央) / 双葉理央(CV:種﨑敦美) / 豊浜のどか(CV:内田真礼) / 梓川かえで(CV:久保ユリカ) / 牧之原翔子(CV:水瀬いのり)","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E4%B8%8D%E5%8F%AF%E6%80%9D%E8%AD%B0%E3%81%AE%E3%82%AB%E3%83%AB%E3%83%86.mp3","cover":"https://i.loli.net/2020/04/02/dET71VJGfvba8Xx.jpg"},{"name":"Sincerely","artist":"TRUE","url":"https://share.dreamwalkerxz.ski/Audio/Blog/Sincerely.mp3","cover":"https://i.loli.net/2020/04/02/GQbqBL6zRuNtEO7.jpg"},{"name":"夜航星","artist":"不才","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E5%A4%9C%E8%88%AA%E6%98%9F.mp3","cover":"https://i.loli.net/2020/04/02/smj8fUiunz6Loyp.png"}]
+    });
+    oldLoad && oldLoad();
+  }
+</script>
+
+  
 
   
 
