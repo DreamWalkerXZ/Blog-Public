@@ -4,31 +4,6 @@
   
   
   <entry>
-    <title>教程-编译自己的OpenWrt固件</title>
-    <link href="/2020/04/11/%E6%95%99%E7%A8%8B-%E7%BC%96%E8%AF%91%E8%87%AA%E5%B7%B1%E7%9A%84OpenWrt%E5%9B%BA%E4%BB%B6/"/>
-    <url>/2020/04/11/%E6%95%99%E7%A8%8B-%E7%BC%96%E8%AF%91%E8%87%AA%E5%B7%B1%E7%9A%84OpenWrt%E5%9B%BA%E4%BB%B6/</url>
-    
-    <content type="html"><![CDATA[<blockquote><p>更多详细信息可以参考：<a href="https://openwrt.org/zh-cn/doc/howto/build" target="_blank" rel="noopener">OpenWrt Project: OpenWrt编译 – 说明</a></p></blockquote><h2 id="为什么要编译自己的openwrt固件"><a class="markdownIt-Anchor" href="#为什么要编译自己的openwrt固件"></a> 为什么要编译自己的OpenWrt固件</h2><p>虽然你可以在恩山或者是KoolShare上找到自己设备能用的OpenWrt固件，但是：</p><ol><li><p>这些固件显然不是为你定制的，里面可能有各种各样你永远都用不上的插件，白白浪费你原本就不充裕的性能与空间。</p></li><li><p>大多数论坛上的固件的编译者也不会为你负责，后续如果有更新，或者是什么你想要的新功能，甚至是安全漏洞的补丁，他们都没有义务为你编译新版的固件</p></li><li><p>有某些及其恶心的固件编译者会向固件中加后门</p></li></ol><h2 id="编译openwrt固件的方法"><a class="markdownIt-Anchor" href="#编译openwrt固件的方法"></a> 编译OpenWrt固件的方法</h2><table><thead><tr><th>方法</th><th>优点</th><th>缺点</th></tr></thead><tbody><tr><td>Github Actions云编译</td><td>1.操作便利，对本地环境无要求 2.适合拥有稳定配置文件后定期编译</td><td>1.性能、空间受限 2.国内访问比较麻烦 3.编译失败后只能从头再来</td></tr><tr><td>本地编译</td><td>1.对固件编译全过程的掌控程度高 2.可以获得较快的编译速度（前提是本机性能够强）</td><td>1.本地环境配置比较麻烦（使用虚拟机或者Docker可以比较好地解决问题）</td></tr></tbody></table><h2 id="获得配置文件"><a class="markdownIt-Anchor" href="#获得配置文件"></a> 获得配置文件</h2><p>无论你打算采取什么方法进行编译，你都需要一份配置文件，而配置文件则是固件的DNA，它直接决定了固件会被运行在什么平台上，要包含什么驱动，要包含什么插件……</p><h3 id="准备本地环境"><a class="markdownIt-Anchor" href="#准备本地环境"></a> 准备本地环境</h3><p>用<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">VirtualBox</a>之类的虚拟机软件，创建一个<a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/bionic/ubuntu-18.04.4-live-server-amd64.iso" target="_blank" rel="noopener">Ubuntu Server 18.04 LTS</a>的虚拟机（本地编译的话，那CPU核心与内存尽量给多，硬盘64G给起步）。然后在本机ssh到虚拟机上，进行进一步的配置。</p><p>⚠️文章后面的命令都是在虚拟机上运行的⚠️</p><p>⚠️从此步开始请全局科学上网⚠️</p><pre class="highlight"><code class="shell"><span class="hljs-meta">#</span><span class="bash"> 安装编译依赖的软件包</span>sudo apt updatesudo apt upgrade -ysudo apt install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib</code></pre><h3 id="拉取代码仓库"><a class="markdownIt-Anchor" href="#拉取代码仓库"></a> 拉取代码仓库</h3><p>想要配置文件，你就需要一个能被配置的东西，也就是OpenWrt的源码仓库</p><table><thead><tr><th>源码仓库名称</th><th>亮点</th><th>地址</th><th>开发分支</th><th>稳定分支</th></tr></thead><tbody><tr><td>OpenWrt</td><td>原版</td><td><a href="https://github.com/openwrt/openwrt.git" target="_blank" rel="noopener">https://github.com/openwrt/openwrt.git</a></td><td>master</td><td>openwrt-19.07</td></tr><tr><td>Lean’s OpenWrt source</td><td>适配设备多，ShadowsocksR Plus+插件</td><td><a href="https://github.com/coolsnowwolf/lede.git" target="_blank" rel="noopener">https://github.com/coolsnowwolf/lede.git</a></td><td>master</td><td>master</td></tr><tr><td>Lienol’s Modified OpenWrt source</td><td>PassWall插件</td><td><a href="https://github.com/Lienol/openwrt.git" target="_blank" rel="noopener">https://github.com/Lienol/openwrt.git</a></td><td>dev-master</td><td>dev-19.07</td></tr></tbody></table><pre class="highlight"><code class="shell"><span class="hljs-meta">#</span><span class="bash"> 拉取仓库</span>git clone -b 分支名称 地址 openwrt<span class="hljs-meta">#</span><span class="bash"> 以Lean<span class="hljs-string">'s OpenWrt source的master分支为例：git clone -b master https://github.com/coolsnowwolf/lede.git openwrt</span></span></code></pre><h3 id="生成配置文件"><a class="markdownIt-Anchor" href="#生成配置文件"></a> 生成配置文件</h3><pre class="highlight"><code class="shell"><span class="hljs-meta">#</span><span class="bash"> 进入仓库</span>cd openwrt<span class="hljs-meta">#</span><span class="bash"> 更新OpenWrt的软件源</span>./scripts/feeds update -a<span class="hljs-meta">#</span><span class="bash"> 安装OpenWrt的软件源中的软件包</span>./scripts/feeds install -a<span class="hljs-meta">#</span><span class="bash"> 开始配置（请把终端窗口）</span>make menuconfig</code></pre><p>配置界面的基本操作：</p><table><thead><tr><th>含义</th><th>按键</th></tr></thead><tbody><tr><td>向上</td><td>上箭头</td></tr><tr><td>向下</td><td>下箭头</td></tr><tr><td>进入下一级</td><td>Enter</td></tr><tr><td>返回上一级</td><td>双击Esc</td></tr></tbody></table><p>每个选项都有这三种状态：</p><table><thead><tr><th>状态</th><th>含义</th><th>选择这个状态的按键</th></tr></thead><tbody><tr><td>&lt; &gt;</td><td>该代码将不会被编译</td><td>n</td></tr><tr><td>&lt;M&gt;</td><td>该代码将被交叉编译，生成的ipk软件包将被放在 <code>/buildsystem/bla/bla/bla</code>中，但该软件包不会放入固件中</td><td>m</td></tr><tr><td>&lt;*&gt;</td><td>该代码将被放入固件中</td><td>y</td></tr></tbody></table>]]></content>
-    
-    
-    <categories>
-      
-      <category>教程</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>OpenWrt</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>NOI-高精度运算</title>
     <link href="/2019/10/04/NOI-%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%BF%90%E7%AE%97/"/>
     <url>/2019/10/04/NOI-%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%BF%90%E7%AE%97/</url>
