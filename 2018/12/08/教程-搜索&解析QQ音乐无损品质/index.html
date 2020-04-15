@@ -185,7 +185,7 @@ search_api = <span class="hljs-string">'http://c.y.qq.com/soso/fcgi-bin/client_s
 response = requests.get(search_api).text
 </code></pre>
 <p><img src="https://s1.ax1x.com/2018/11/10/iqlW9I.png" srcset="/img/loading.gif" alt="搜索数据" /></p>
-<p>即歌曲就在json.loads(response)[‘data’][‘song’][‘list’]中</p>
+<p>即歌曲就在<code>json.loads(response)['data']['song']['list']</code>中</p>
 <h2 id="2分析数据"><a class="markdownIt-Anchor" href="#2分析数据"></a> 2.分析数据</h2>
 <p>首先我们来看一个解析后的url：</p>
 <pre class="highlight"><code class="python"><span class="hljs-string">'http://streamoc.music.tc.qq.com/M800000PLHrM2luXiz.mp3?vkey=CA23BC73FA35144644BAD2C8E3026425F724AD8AA117AD079FB5812177575B59044EF642A3B422F3A9E7FEFF185839FC163444AD015BB875&amp;guid=DreamWalkerXZ&amp;uin=123456&amp;fromtag=8'</span>
@@ -241,10 +241,10 @@ response = requests.get(search_api).text
 </tr>
 </tbody>
 </table>
-<p>至于如何判断是否有此品质，只需要在第一步的搜索结果中的json.loads(response)[‘data’][‘song’][‘list’][歌曲位置][‘file’]中判断size_128, size_320, size_aac, size_ape, size_dts, size_flac, size_ogg这几个项的值是否为0即可（为0则代表无此品质）</p>
+<p>至于如何判断是否有此品质，只需要在第一步的搜索结果中的<code>json.loads(response)['data']['song']['list'][歌曲位置]['file']</code>中判断size_128, size_320, size_aac, size_ape, size_dts, size_flac, size_ogg这几个项的值是否为0即可（为0则代表无此品质）</p>
 <h3 id="mid"><a class="markdownIt-Anchor" href="#mid"></a> mid</h3>
 <p>mid是QQ音乐中每一首歌曲的唯一标识符</p>
-<p>mid即json.loads(response)[‘data’][‘song’][‘list’][歌曲位置][‘mid’]的值</p>
+<p>mid即<code>json.loads(response)['data']['song']['list'][歌曲位置]['mid']</code>的值</p>
 <h3 id="uin与guid"><a class="markdownIt-Anchor" href="#uin与guid"></a> uin与guid</h3>
 <p>guid和uin随意填充即可, 但是要与后面生成vkey时所填的一致</p>
 <h3 id="vkey"><a class="markdownIt-Anchor" href="#vkey"></a> vkey</h3>
@@ -489,7 +489,7 @@ http://streamoc.music.tc.qq.com/M800001Liwq92gKerW.mp3?vkey=<span class="hljs-nu
       order: 'random',
       theme: '#FF4181',
       preload: 'none',
-      audio: [{"name":"secret base 〜君がくれたもの〜 (10 years after Ver.)","artist":"本間芽衣子(茅野愛衣) / 安城鳴子(戸松遥) / 鶴見知利子(早見沙織)","url":"https://share.dreamwalkerxz.ski/Audio/Blog/secret%20base%20%E3%80%9C%E5%90%9B%E3%81%8B%E3%82%99%E3%81%8F%E3%82%8C%E3%81%9F%E3%82%82%E3%81%AE%E3%80%9C%20(10%20years%20after%20Ver.).mp3","cover":"https://i.loli.net/2020/04/02/koMgGyuwep9Q3Ds.png"},{"name":"比翼の羽根","artist":"eufonius","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E6%AF%94%E7%BF%BC%E3%81%AE%E7%BE%BD%E6%A0%B9.mp3","cover":"https://i.loli.net/2020/04/02/Jv4t5F3QNBiEWXe.jpg"},{"name":"不可思議のカルテ movie ver.","artist":"桜島麻衣(CV:瀬戸麻沙美) / 古賀朋絵(CV:東山奈央) / 双葉理央(CV:種﨑敦美) / 豊浜のどか(CV:内田真礼) / 梓川かえで(CV:久保ユリカ) / 牧之原翔子(CV:水瀬いのり)","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E4%B8%8D%E5%8F%AF%E6%80%9D%E8%AD%B0%E3%81%AE%E3%82%AB%E3%83%AB%E3%83%86.mp3","cover":"https://pic.stackoverflow.wiki/uploadImages/113/104/164/45/2020/04/10/16/01/95bae131-63d2-425d-a68e-686a316604f6.jpg"},{"name":"Sincerely","artist":"TRUE","url":"https://share.dreamwalkerxz.ski/Audio/Blog/Sincerely.mp3","cover":"https://i.loli.net/2020/04/02/GQbqBL6zRuNtEO7.jpg"},{"name":"夜航星","artist":"不才","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E5%A4%9C%E8%88%AA%E6%98%9F.mp3","cover":"https://i.loli.net/2020/04/02/smj8fUiunz6Loyp.png"}]
+      audio: [{"name":"secret base 〜君がくれたもの〜 (10 years after Ver.)","artist":"本間芽衣子(茅野愛衣) / 安城鳴子(戸松遥) / 鶴見知利子(早見沙織)","url":"https://share.dreamwalkerxz.ski/Audio/Blog/secret%20base%20%E3%80%9C%E5%90%9B%E3%81%8B%E3%82%99%E3%81%8F%E3%82%8C%E3%81%9F%E3%82%82%E3%81%AE%E3%80%9C%20(10%20years%20after%20Ver.).mp3","cover":"https://i.loli.net/2020/04/02/koMgGyuwep9Q3Ds.png"},{"name":"比翼の羽根","artist":"eufonius","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E6%AF%94%E7%BF%BC%E3%81%AE%E7%BE%BD%E6%A0%B9.mp3","cover":"https://i.loli.net/2020/04/02/Jv4t5F3QNBiEWXe.jpg"},{"name":"不可思議のカルテ movie ver.","artist":"桜島麻衣(CV:瀬戸麻沙美) / 古賀朋絵(CV:東山奈央) / 双葉理央(CV:種﨑敦美) / 豊浜のどか(CV:内田真礼) / 梓川かえで(CV:久保ユリカ) / 牧之原翔子(CV:水瀬いのり)","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E4%B8%8D%E5%8F%AF%E6%80%9D%E8%AD%B0%E3%81%AE%E3%82%AB%E3%83%AB%E3%83%86.mp3","cover":"https://i.loli.net/2020/04/11/OjhZwg7JDdB3TsP.jpg"},{"name":"Sincerely","artist":"TRUE","url":"https://share.dreamwalkerxz.ski/Audio/Blog/Sincerely.mp3","cover":"https://i.loli.net/2020/04/02/GQbqBL6zRuNtEO7.jpg"},{"name":"夜航星","artist":"不才","url":"https://share.dreamwalkerxz.ski/Audio/Blog/%E5%A4%9C%E8%88%AA%E6%98%9F.mp3","cover":"https://i.loli.net/2020/04/02/smj8fUiunz6Loyp.png"}]
     });
     oldLoad && oldLoad();
   }
